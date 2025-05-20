@@ -1,6 +1,6 @@
 from flask import Flask
 # from data_table_V2 import db, EngineSensorData
-from data_table_V1 import db, EngineTest1, EngineTest2, EngineTest3, EngineTest4, EngineTrain1, EngineTrain2, EngineTrain3, EngineTrain4
+from data_table_V1 import db, EngineTest1, EngineTest2, EngineTest3, EngineTest4, EngineTrain1, EngineTrain2, EngineTrain3, EngineTrain4, RUL1, RUL2, RUL3, RUL4
 from headers_listed import headers_listed
 
 
@@ -34,15 +34,25 @@ data_sets = {
     "train_FD002": (EngineTrain2, "CMAPSS-Data/train_FD002.txt"),
     "train_FD003": (EngineTrain3, "CMAPSS-Data/train_FD003.txt"),
     "train_FD004": (EngineTrain4, "CMAPSS-Data/train_FD004.txt"),
+    "rul_FD001": (RUL1, "CMAPSS-Data/RUL_FD001.txt"),
+    "rul_FD002": (RUL2, "CMAPSS-Data/RUL_FD002.txt"),
+    "rul_FD003": (RUL3, "CMAPSS-Data/RUL_FD003.txt"),
+    "rul_FD004": (RUL4, "CMAPSS-Data/RUL_FD004.txt"),
 }
 
 
 def load_dataset(dataset, path_file):
+    rows = []
+    is_rul = dataset.__tablename__.startswith("rul_")
     with open(path_file, "r") as file:
-        rows = []
-        for ln, row in enumerate(file, start=1):
-            row_data = parse_row(row)
-            rows.append(dataset(**row_data))
+        for idx, row in enumerate(file, start=1):
+            if is_rul:
+                rul_val = float_or_int(row.strip())
+                rows.append(dataset(unit_number=idx, rul=rul_val))
+            else:
+                row_data = parse_row(row)
+                rows.append(dataset(**row_data))
+
     db.session.bulk_save_objects(rows)
     db.session.commit()
 

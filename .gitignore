@@ -1,10 +1,9 @@
 .idea/
 __pycache__/
+.DS_Store
 
 CMAPSS-Data/
 instance/
 
-data_table_V1.py
 data_table_V2.py
-get_data.py
-headers_listed.py
+

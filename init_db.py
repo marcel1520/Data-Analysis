@@ -1,10 +1,8 @@
 from flask import Flask
-# from data_table_V2 import db, EngineSensorData
-from data_table_V1 import (db, EngineTest1, EngineTest2, EngineTest3, EngineTest4,
-                           EngineTrain1, EngineTrain2, EngineTrain3, EngineTrain4,
-                           RUL1, RUL2, RUL3, RUL4)
+from data_table import (db, EngineTest1, EngineTest2, EngineTest3, EngineTest4,
+                        EngineTrain1, EngineTrain2, EngineTrain3, EngineTrain4,
+                        RUL1, RUL2, RUL3, RUL4)
 from headers_listed import headers_listed
-
 
 
 headers = headers_listed

@@ -6,6 +6,7 @@ from data_table_V1 import (db, EngineTest1, EngineTest2, EngineTest3, EngineTest
 from headers_listed import headers_listed
 
 
+
 headers = headers_listed
 
 
@@ -55,12 +56,14 @@ def load_dataset(dataset, path_file):
                 row_data = parse_row(row)
                 rows.append(dataset(**row_data))
 
+    db.session.query(dataset).delete()
     db.session.bulk_save_objects(rows)
     db.session.commit()
 
 
 if __name__ == "__main__":
     with app.app_context():
-        db.create_all()
+        # db.create_all()
         for dataset, (model, file_path) in data_sets.items():
             load_dataset(model, file_path)
+

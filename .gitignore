@@ -2,7 +2,6 @@
 __pycache__/
 .DS_Store
 
-CMAPSS-Data/
-instance/
-
+CMAPSS-Data
+instance
 

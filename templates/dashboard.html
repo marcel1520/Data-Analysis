@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Engine Dashboard</title>
+</head>
+<body>
+  <h1>CMAPSS Engine Dashboard</h1>
+
+  <form method="POST">
+      <label>Select Unit Number:</label>
+      <select name="unit_number">
+        {% for num in unit_numbers %}
+            <option value="{{ num }}" {% if num == selected_unit %}selected{% endif %}>{{ num }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Select Setting:</label>
+      <select name="setting">
+          <option value="op_setting_1" {% if selected_setting == "op_setting_1" %}selected{% endif %}>Setting 1</option>
+          <option value="op_setting_2" {% if selected_setting == "op_setting_2" %}selected{% endif %}>Setting 2</option>
+          <option value="op_setting_3" {% if selected_setting == "op_setting_3" %}selected{% endif %}>Setting 3</option>
+      </select>
+
+      <button type="submit">Generate Plot</button>
+  </form>
+
+  {% if plot_url %}
+    <h2>Sensor Plot for Engine {{ selected_unit }}</h2>
+    <img src="data:image/png;base64,{{ plot_url }}" />
+  {% endif %}
+</body>
+</html>

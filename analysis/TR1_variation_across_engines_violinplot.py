@@ -12,7 +12,7 @@ with app.app_context():
 
 plt.figure(figsize=(14, 6))
 sns.violinplot(x='unit_number', y='sensor_2', data=df[df['unit_number'] <= 10])
-plt.title('Sensor 2 Distributuion (Violin Plot) - First 10 Engines')
+plt.title('Sensor 2 Distribution (Violin Plot) - First 10 Engines')
 plt.xlabel('Engine Unit Number')
 plt.ylabel('Sensor')
 plt.show()

@@ -20,13 +20,13 @@ def dashboard():
     if request.method == "POST":
         filtered = df[df["unit_number"] == int(selected_unit)]
 
-        fig, ax = plt.subplots(figsize=(10, 6))
+        fig, ax = plt.subplots(figsize=(15, 7))
 
         ax.plot(filtered["time_in_cycle"], filtered[selected_setting])
 
-        ax.set_title(f"Sensor for Engine {selected_unit} - {selected_setting}")
+        ax.set_title(f"For Engine {selected_unit} - {selected_setting}")
         ax.set_xlabel("Cycle")
-        ax.set_ylabel("Sensor Value")
+        ax.set_ylabel("Settings Graph")
         ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
         ax.grid(True)
 
